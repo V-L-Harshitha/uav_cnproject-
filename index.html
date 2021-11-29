@@ -58,6 +58,17 @@ xhttp.onreadystatechange = function() {
 xhttp.open("GET", "your url", true);
 
 xhttp.send();
+	
+	// Open a new connection, using the GET request on the URL endpoint
+request.open('GET', 'https://v-l-harshitha.github.io/uav_cnproject-/', true)
+
+request.onload = function () {
+  // Begin accessing JSON data here
+  }
+}
+
+// Send request
+request.send()
 </script>
 	
 <style>
