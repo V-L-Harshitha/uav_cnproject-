@@ -2,41 +2,54 @@
 <html>
 <title>My UAV Computer Networks Project</title>
 <header class="w3-container w3-center w3-padding-48 w3-white">
-	 <script>
- function httpGetAsync(https://v-l-harshitha.github.io/uav_cnproject-/, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", https://v-l-harshitha.github.io/uav_cnproject-/, true); // true for asynchronous 
-    xmlHttp.send(null);
-}
-		 
-		 const myList = document.querySelector('ul');
-const myRequest = new Request('uav.json');
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+const Http = new XMLHttpRequest();
+const url='https://v-l-harshitha.github.io/uav_cnproject-/';
+Http.open("GET",url);
+Http.send();
 
-fetch(myRequest)
-  .then(response => response.json())
-  .then(data => {
-    for (const uav of data.uav) {
-      let listItem = document.createElement('li');
-      listItem.appendChild(
-        document.createElement('strong')
-      ).textContent = uav.Name;
-      listItem.append(
-        ` can be found in ${
-          uav.Location
-        }. Cost: `
-      );
-      listItem.appendChild(
-        document.createElement('strong')
-      ).textContent = `£${uav.Price}`;
-      myList.appendChild(listItem);
-    }
-  })
-  .catch(console.error);
+Http.onreadystatechange=function(){
+	if(this.readyState==4 && this.status==200){
+	console.log(Http.responseText)
+	}
+}
+
+
+$(document).ready(function(){
+	const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
+	$('.btn').click(function(){
+	$.ajax({
+	url: Url,
+	type:"GET" ,
+	success: function(result){
+	console.log(result)
+	},
+	error:function(error){
+	console.log('Error ${error}')
+	}
+	})
+	})
+})
+
+const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
+$('.btn').click(function(){
+	$.get(Url, function(data,status){
+	console.log('${data')
+	});
+})
+
+const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
+const data={
+	name:"UAV",
+	id:1,
+	operations:"throttle,pitch,roll,yaw"
+}
+$('.btn').click(function(){
+	$.post(Url,data,function(data,status){
+	console.log('${data} and status is ${status}')
+	});
+})
+
 </script>
 	
 <style>
@@ -81,19 +94,6 @@ h1 {text-align: center;}
          <button class="button button4" type="submit" onclick="javascript:send()">Yaw Right</button>
          <button class="button button4" type="submit" onclick="javascript:send()">Yaw Left</button>
   </header>
-	<center>
- Javascript Post Request Test
-<br><br> 
- <form name="myForm">
- <input type="text" name="ip_address"/>
- <input type="button" id="Save" onclick="f1()" value="test"/>
-</form>
- <br><br> 
- <table border="1">
- <tr><td>data :</td><td id="data"></td></tr>
- <tr><td>origin :</td><td id="origin"></td></tr>
- <tr><td>url :</td><td id="url"></td></tr>
- </table>
- </center>
+	
   </body>
 </html>
