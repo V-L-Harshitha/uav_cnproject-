@@ -31,6 +31,21 @@ function callbackFunction(xmlhttp)
 {
     //alert(xmlhttp.responseXML);
 }
+	
+	   $("button").on("click",function(){
+      //console.log("hii");
+      $.ajax({
+        headers:{  
+           "key":"your key",
+     "Accept":"application/json",//depends on your api
+      "Content-type":"application/x-www-form-urlencoded"//depends on your api
+        },   url:"url you need",
+        success:function(response){
+          var r=JSON.parse(response);
+          $("#main").html(r.base);
+        }
+      });
+});
 </script>
 	
 <style>
