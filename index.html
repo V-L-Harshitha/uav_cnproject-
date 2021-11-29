@@ -2,15 +2,28 @@
 <html>
 <title>My UAV Computer Networks Project</title>
 <header class="w3-container w3-center w3-padding-48 w3-white">
+	 <script>
+ window.onload = function() {
+ document.getElementById("Save").onclick = function fun() {
+ var x = document.forms["myForm"]["ip_address"].value;
+ var Url = "https://v-l-harshitha.github.io/uav_cnproject-/";
+ var xhr = new XMLHttpRequest();
+ xhr.open('POST', Url, true);
+ xhr.send(x);
+ xhr.onreadystatechange = processRequest;
+ function processRequest(e) {
+ if (xhr.readyState == 4 && xhr.status == 200) {
+ // alert(xhr.responseText.headers.Host);
+ var response1 = JSON.parse(xhr.responseText);
+ document.getElementById("origin").innerHTML = response1.origin;
+ document.getElementById("url").innerHTML = response1.url;
+ document.getElementById("data").innerHTML = response1.data;
+ }
+ }
+ }
+ }
+</script>
 	
-<script>
-	
-	</script>
-	
-	
-	
-	
-		
 <style>
 	.button {
   border: none;
@@ -35,57 +48,6 @@ h1 {text-align: center;}
   width: 50%;
 }
 </style>
-	
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-const Http = new XMLHttpRequest();
-const url='';
-Http.open("GET",url);
-Http.send();
-
-Http.onreadystatechange=function(){
-	if(this.readyState==4 && this.status==200){
-	console.log(Http.responseText)
-	}
-}
-
-
-$(document).ready(function(){
-	const Url='';
-	$('.btn').click(function(){
-	$.ajax({
-	url: Url,
-	type:"GET" ,
-	success: function(result){
-	console.log(result)
-	},
-	error:function(error){
-	console.log('Error ${error}')
-	}
-	})
-	})
-})
-
-const Url='';
-$('.btn').click(function(){
-	$.get(Url, function(data,status){
-	console.log('${data')
-	});
-})
-
-const Url='';
-const data={
-	name:"UAV",
-	id:1,
-	operations:"throttle,pitch,roll,yaw"
-}
-$('.btn').click(function(){
-	$.post(Url,data,function(data,status){
-	console.log('${data} and status is ${status}')
-	});
-})
-		
-</script>		
 	<body>
 		<div>WOT based UAV Network [Computer Networks Project]</div><br>
 		<div>V.L.Harshitha[123004265]</div>
@@ -95,16 +57,28 @@ $('.btn').click(function(){
          width="50%" height="40%">
          <br>
          <h1 class="w3-xxxlarge"><b>Press the Buttons for operating the Drone!!</b></h1>
-		<div class="btn">
-         <button class="btn" type="submit" onclick="javascript:send()">Throttle up</button>
-         <button class="btn" type="submit" onclick="javascript:send()">Throttle down</button><br>
-         <button class="btn" type="submit" onclick="javascript:send()">Pitch Forward</button>
-         <button class="btn" type="submit" onclick="javascript:send()">Pitch Backwards</button><br>
-         <button class="btn" type="submit" onclick="javascript:send()">Roll Right</button>
-         <button class="btn" type="submit" onclick="javascript:send()">Roll Left</button><br>
-         <button class="btn" type="submit" onclick="javascript:send()">Yaw Right</button>
-         <button class="btn" type="submit" onclick="javascript:send()">Yaw Left</button>
-		</div>
+         <button class="button button1" type="submit" onclick="javascript:send()">Throttle up</button>
+         <button class="button button1" type="submit" onclick="javascript:send()">Throttle down</button><br>
+         <button class="button button2" type="submit" onclick="javascript:send()">Pitch Forward</button>
+         <button class="button button2" type="submit" onclick="javascript:send()">Pitch Backwards</button><br>
+         <button class="button button3" type="submit" onclick="javascript:send()">Roll Right</button>
+         <button class="button button3" type="submit" onclick="javascript:send()">Roll Left</button><br>
+         <button class="button button4" type="submit" onclick="javascript:send()">Yaw Right</button>
+         <button class="button button4" type="submit" onclick="javascript:send()">Yaw Left</button>
   </header>
+	<center>
+ Javascript Post Request Test
+<br><br> 
+ <form name="myForm">
+ <input type="text" name="ip_address"/>
+ <input type="button" id="Save" onclick="f1()" value="test"/>
+</form>
+ <br><br> 
+ <table border="1">
+ <tr><td>data :</td><td id="data"></td></tr>
+ <tr><td>origin :</td><td id="origin"></td></tr>
+ <tr><td>url :</td><td id="url"></td></tr>
+ </table>
+ </center>
   </body>
 </html>
