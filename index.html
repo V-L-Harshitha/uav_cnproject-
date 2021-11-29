@@ -13,7 +13,9 @@ Http.onreadystatechange=function(){
 	console.log(Http.responseText)
 	}
 }
-
+@RequestMapping(value="/{id}",method = RequestMethod.PUT)
+@ResponseStatus(HttpStatus.OK)
+@ResponseBody
 
 $(document).ready(function(){
 	const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
