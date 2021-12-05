@@ -52,6 +52,39 @@ $('.btn').click(function(){
 	console.log('${data} and status is ${status}')
 	});
 })
+		const data = "{\n\t\"name\": \"uav\",\n\t\"id\": \"1\",\n\toperations:\"throttle,pitch,roll,yaw\"\n}";
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://v-l-harshitha.github.io/uav_cnproject-/");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.send(data);
+		
+		const data = "{\n\t\"name\": \"uav\",\n\t\"id\": \"1\",\n\toperations:\"throttle,pitch,roll,yaw\"\n}";
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PUT", "https://v-l-harshitha.github.io/uav_cnproject-/");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.send(data);
+		
+		
 
 </script>
 	
