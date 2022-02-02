@@ -1,110 +1,158 @@
 <!DOCTYPE html>
 <html>
-<title>My UAV Computer Networks Project</title>
-<header class="w3-container w3-center w3-padding-48 w3-white">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-		Allow: GET, HEAD, OPTIONS, PUT, POST
-const Http = new XMLHttpRequest();
-const url='https://v-l-harshitha.github.io/uav_cnproject-/';
-Http.open("GET",url);
-Http.send();
-
-Http.onreadystatechange=function(){
-	if(this.readyState==4 && this.status==200){
-	console.log(Http.responseText)
-	}
-}
-@RequestMapping(value="/{id}",method = RequestMethod.PUT)
-@ResponseStatus(HttpStatus.OK)
-@ResponseBody
-
-$(document).ready(function(){
-	const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
-	$('.btn').click(function(){
-	$.ajax({
-	url: Url,
-	type:"GET" ,
-	success: function(result){
-	console.log(result)
-	},
-	error:function(error){
-	console.log('Error ${error}')
-	}
-	})
-	})
-})
-
-const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
-$('.btn').click(function(){
-	$.get(Url, function(data,status){
-	console.log('${data')
-	});
-})
-
-const Url='https://v-l-harshitha.github.io/uav_cnproject-/';
-const data={
-	name:"UAV",
-	id:1,
-	operations:"throttle,pitch,roll,yaw"
-}
-$('.btn').click(function(){
-	$.post(Url,data,function(data,status){
-	console.log('${data} and status is ${status}')
-	});
-})
-		const data = "{\n\t\"name\": \"uav\",\n\t\"id\": \"1\",\n\toperations:\"throttle,pitch,roll,yaw\"\n}";
-
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === this.DONE) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("POST", "https://v-l-harshitha.github.io/uav_cnproject-/");
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.send(data);
-		
-		const data = "{\n\t\"name\": \"uav\",\n\t\"id\": \"1\",\n\toperations:\"throttle,pitch,roll,yaw\"\n}";
-
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === this.DONE) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("PUT", "https://v-l-harshitha.github.io/uav_cnproject-/");
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.send(data);
-		
-		
-
-</script>
-	
+<title>Connect drone to web</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-	.button {
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
+
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
   cursor: pointer;
 }
-.button1 {background-color: #4CAF50;}
-.button2 {background-color: #008CBA;}
-.button3 {background-color: tomato;} 
-.button4 {background-color: slateblue;}
-h1 {text-align: center;}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  
+}
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+
+
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+ 
+}
 .center {
   display: block;
   margin-left: auto;
@@ -112,24 +160,96 @@ h1 {text-align: center;}
   width: 50%;
 }
 </style>
-	<body>
-		<div>WOT based UAV Network [Computer Networks Project]</div><br>
-		<div>V.L.Harshitha[123004265]</div>
-    <h1 class="w3-xxxlarge"><b>Welcome to control your Drone from this Website</b></h1>
-
-        <img class="center" alt="Qries" src="https://media.istockphoto.com/photos/quadcopter-drone-with-4k-video-camera-flying-in-the-air-picture-id911190112?k=20&m=911190112&s=612x612&w=0&h=6mkFfZ_h5OVzYH_b0DVaYMdMZd86Zn8MZH89gWPJN0w="
+</head>
+<body>
+<img class="center" alt="Qries" src="https://sastra.edu/workshopon3d/images/sastralogo.png"
          width="50%" height="40%">
-         <br>
-         <h1 class="w3-xxxlarge"><b>Press the Buttons for operating the Drone!!</b></h1>
-         <button class="button button1" type="submit" onclick="javascript:send()">Throttle up</button>
-         <button class="button button1" type="submit" onclick="javascript:send()">Throttle down</button><br>
-         <button class="button button2" type="submit" onclick="javascript:send()">Pitch Forward</button>
-         <button class="button button2" type="submit" onclick="javascript:send()">Pitch Backwards</button><br>
-         <button class="button button3" type="submit" onclick="javascript:send()">Roll Right</button>
-         <button class="button button3" type="submit" onclick="javascript:send()">Roll Left</button><br>
-         <button class="button button4" type="submit" onclick="javascript:send()">Yaw Right</button>
-         <button class="button button4" type="submit" onclick="javascript:send()">Yaw Left</button>
-  </header>
-	
-  </body>
+<div style="text-align: center;">WOT based UAV Network [Computer Networks Project]</div><br>
+    <div style="text-align: center;">V.L.Harshitha[123004265]</div>
+    <h1 class="w3-xxxlarge"><b>Welcome to control your Drone from this Website.</b></h1> <h3 style="font-style: italic;">First step is connecting your drone to this web server. If you already have an account please Sign-in</h3>
+
+
+<h2>Sign-In Form</h2>
+
+<form action="/action_page.php" method="post">
+
+  <div class="container">
+    <label for="uname"><b>User Name</b></label><br>
+    <input type="text" placeholder="Enter Username" name="uname" required><br>
+
+    <label for="psw"><b>Password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="psw" required><br>
+    <h7 style="color: red">Disclaimer: After signing-in the page will automatically direct you to a new page where you can control your drone </h7><br>
+        <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label><br>
+        
+    <button type="submit">sign-In</button>
+    <div class="container" style="background-color:#f1f1f1">
+      <h3 style="font-style: italic;">If you are new to our website click on "Create account" to become part of our community</h3>
+    <button type="button" onclick="document.getElementById('id01').style.display='block'">Create new account</button>
+    
+  </div>
+
+  
+  </div>
+  
+</form>
+
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="https://v-l-harshitha.github.io/uav_cnproject-/" onsubmit="myFunction()">
+    
+
+    <div class="container">
+      <label for="uname"><b>First Name</b></label><br>
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+            <label for="uname"><b>Last Name</b></label><br>
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+            <label for="uname"><b>User Name</b></label><br>
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+            <label for="uname"><b>Phone Number</b></label><br>
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+            <label for="uname"><b>Email ID</b></label><br>
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+
+      <label for="psw"><b>Password</b></label><br>
+      <input type="password" placeholder="Enter Password" name="psw" required><br>
+
+      <label for="psw"><b>Confirm Password</b></label><br>
+      <input type="password" placeholder="Enter Password" name="psw" required><br>
+        <label><br>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+
+    </label>
+
+      <button type="submit">Create Account</button>
+  
+    </div>
+
+  
+  </form>
+</div>
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function myFunction() {
+  alert("Sucessfully created your account! Please Sign-In to Start piloting");
+}
+</script>
+
+</body>
 </html>
+
