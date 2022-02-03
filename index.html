@@ -160,6 +160,27 @@ span.psw {
   width: 50%;
 }
 </style>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/slapform@latest/dist/index.min.js"></script>
+<script type="text/javascript">
+var slapform = new Slapform();
+slapform.submit({
+form: 'D5y9NmjeaT',
+data: {
+name: 'Jon Snow',
+message: 'Hello World!',
+}
+})
+.then(function (response) {
+console.log('Success', response)
+})
+.catch(function (e) {
+console.error('Fail', e)
+})
+</script>
+  
+  
 </head>
 <body>
 <img class="center" alt="Qries" src="https://sastra.edu/workshopon3d/images/sastralogo.png"
@@ -171,7 +192,7 @@ span.psw {
 
 <h2>Sign-In Form</h2>
 
-<form action="operation.html" method="get">
+<form action="operation.html" method="GET">
 
   <div class="container">
     <label for="uname"><b>User Name</b></label><br>
@@ -199,8 +220,7 @@ span.psw {
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="https://v-l-harshitha.github.io/uav_cnproject-/" onsubmit="myFunction()" method="get">
-    
+  <form class="modal-content animate" action="https://api.slapform.com/D5y9NmjeaT" onsubmit="myFunction()" method="POST">
 
     <div class="container">
       <label for="uname"><b>First Name</b></label><br>
